@@ -18,20 +18,37 @@ const show =(req , res)=>{
     });
   });
 };
-const index = (req, res) => {
-  db.User.find({}, (err, allUsers) => {
-    if (err) return console.log(err);
-    res.json({
-      status: 200,
-      message: 'Show all users',
-      requestedAt: new Date().toLocaleString(),
-      count: allUsers.length,
-      data: allUsers,
+
+const userUpdate = (req, res) => {
+  if(!req.session.currentUser) return res.status(401).json({
+      status: 401,
+      message: 'Pleast Try Again!'
+  });
+  db.User.findByIdAndUpdate(req.params.id,
+    req.body, { new: true }, 
+    (error, updatedUser)=>{
+      if(error) return console.log(error)
+      res.json({
+        status: 200,
+        count:1, 
+        date:updatedUser,
+        requestAt: new Date().toLocaleString(),
+      });
     });
+}
+//Delete Current User
+const userDelete = (req, res) => {
+  db.User.deleteOne({ User: req.params.User }, (err) => {
+      if(err) return console.log(err);
+      res.json({
+          status: 200,
+          message: 'Being Processed'
+      });
   });
 };
 
 module.exports= {
   show,
-  index,
+  userDelete,
+  userUpdate,
 };

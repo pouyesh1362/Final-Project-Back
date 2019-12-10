@@ -13,6 +13,7 @@ const show = (req ,res)=>{
   }
 
   const create = (req, res)=>{
+    req.body.owner = req.session.currentUser.id;
     db.House.create(req.body, (error, createdHouse)=>{
       if(error) return consle.log(error);
       res.json({
@@ -25,7 +26,7 @@ const show = (req ,res)=>{
   }
 
   const destroy = (req,res)=>{
-    db.House.findByIdAndDelete(req.params.HouseId, (error,deletedHouse)=>{
+    db.House.findByIdAndDelete(req.params.id, (error,deletedHouse)=>{
       if(error) consle.log(error);
       res.json({
         status: 200,
@@ -37,7 +38,7 @@ const show = (req ,res)=>{
   }
   
   const update = (req,res)=>{
-    db.House.findByIdAndUpdate(req.params.HouseId,
+    db.House.findByIdAndUpdate(req.params.id,
       req.body,
       {new:true},
       (error, updatedHouse)=>{
@@ -52,7 +53,7 @@ const show = (req ,res)=>{
   }
 
   const index = (req,res)=>{
-    db.House.findById(req.params.HouseId, (error, Housefound)=>{
+    db.House.findById(req.params.id, (error, Housefound)=>{
       if(error) return console.log(error);
       res.json({
         status: 201,
