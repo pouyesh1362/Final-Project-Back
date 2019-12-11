@@ -11,7 +11,7 @@ const routes = require('./routes');
 //--------------------------------------MiddleWare---------------------------//
 //// CORS - Cross Origi Resource Sharing
 const corsOption = {
-  origin: [`http://localhost:3000`],
+  origin: [`https://househubhh.herokuapp.com`],
   credentials:true,
   optionsSuccessStatus:200,
 };
@@ -24,7 +24,7 @@ app.use(bodyParser.json());
 //---------------Express Session - Anthentication--------
 app.use(session({
 
-  store: new MongoStore({url:process.env.MONGO_URI}),
+  store: new MongoStore({url:process.env.MONGODB_URI}),
   secret: process.env.SECRET,
   resave: false,
   saveUninitialized: false,
