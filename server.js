@@ -42,4 +42,4 @@ app.use('/api/v1/auth', routes.auth);
 app.use('/api/v1/users', routes.user);
 app.use('/api/v1/houses', routes.house);
 
-app.listen(PORT, ()=>console.log(`Server connected at http://localhost:${PORT}`));
+app.listen(process.env.PORT, ()=>console.log(`Server connected faild ...`));
