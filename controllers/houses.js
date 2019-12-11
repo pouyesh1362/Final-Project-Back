@@ -52,6 +52,7 @@ const show = (req ,res)=>{
       });
   }
 
+
   const index = (req,res)=>{
     db.House.findById(req.params.id, (error, Housefound)=>{
       if(error) return console.log(error);

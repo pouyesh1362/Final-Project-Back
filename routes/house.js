@@ -8,4 +8,5 @@ router.post('/create', ctrl.houses.create);
 router.delete('/delete/:id', ctrl.houses.destroy);
 router.put('/update/:id', ctrl.houses.update);
 
+
 module.exports = router;
